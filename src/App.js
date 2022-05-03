@@ -34,7 +34,7 @@ export default function App() {
 const CardFlex = styled.main`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 20px;
 `;

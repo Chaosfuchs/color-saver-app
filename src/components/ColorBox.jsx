@@ -12,8 +12,8 @@ export default function ColorBox({ color }) {
 }
 
 const StyledBox = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 15px;
   background: ${props => props.backgroundColor};
   display: grid;

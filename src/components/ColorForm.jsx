@@ -25,11 +25,17 @@ export default function ColorForm({ onSubmit }) {
 
 const FormContainer = styled.form`
   box-sizing: border-box;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 10px;
-  width: 200px;
-  height: 200px;
-  padding: 20px;
+  width: 300px;
+  height: 150px;
+  padding: 30px;
+  margin: 20px;
+  border: 3px solid black;
+  border-radius: 15px;
+  background-color: beige;
 
   input {
     width: 100%;
