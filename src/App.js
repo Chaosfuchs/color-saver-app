@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import Box from './components/ColorBox';
+import ColorBox from './components/ColorBox';
+import ColorForm from './components/ColorForm';
 
 const colorList = [
   '#F72585',
@@ -19,11 +20,15 @@ export default function App() {
   const [hexColor, setHexColor] = useState(colorList);
   return (
     <CardFlex>
-      <div>
-        <span>{colorList[0]}</span>
-      </div>
+      <ColorForm onSubmit={handleSubmit} />
+      {hexColor.map(color => (
+        <ColorBox color={color} />
+      ))}
     </CardFlex>
   );
+  function handleSubmit(newColor) {
+    setHexColor([newColor, ...hexColor]);
+  }
 }
 
 const CardFlex = styled.main`

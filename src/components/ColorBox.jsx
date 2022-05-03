@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export default function Box({ color }) {
+export default function ColorBox({ color }) {
   return (
     <StyledBox backgroundColor={color} onClick={handleClick}>
       <span>{color}</span>
