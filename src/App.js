@@ -18,6 +18,10 @@ const colorList = [
 
 export default function App() {
   const [hexColor, setHexColor] = useState(colorList);
+
+  function handleSubmit(newColor) {
+    setHexColor([newColor, ...hexColor]);
+  }
   return (
     <CardFlex>
       <ColorForm onSubmit={handleSubmit} />
@@ -26,9 +30,6 @@ export default function App() {
       ))}
     </CardFlex>
   );
-  function handleSubmit(newColor) {
-    setHexColor([newColor, ...hexColor]);
-  }
 }
 
 const CardFlex = styled.main`
