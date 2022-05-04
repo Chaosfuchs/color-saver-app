@@ -18,7 +18,23 @@ const COLORS = [
 ];
 
 export default function App() {
-  const [colorList, setColorList] = useState(COLORS);
+  const [colorList, setColorList] = useState(() => {
+    const locallySavedValue = window.localStorage.getItem('colorList');
+    if (locallySavedValue !== null) {
+      console.log('using local storage');
+      return JSON.parse(locallySavedValue);
+    } else {
+      return COLORS;
+    }
+  });
+
+  function handleSubmit(newColor) {
+    const newColorObject = {
+      hexCode: newColor,
+      id: nanoid(),
+    };
+    setColorList([newColorObject, ...colorList]);
+  }
 
   function handleDelete(colorId) {
     const newColorList = colorList.filter(color => color.id !== colorId);
@@ -40,35 +56,24 @@ export default function App() {
     setColorList(newColorList);
   }
 
-  function handleSubmit(newColor) {
-    const newColors = [newColor, ...colorList];
-    setColorList(newColors);
-    window.localStorage.setItem('colorList', JSON.stringify(newColors));
-    const newColorObject = {
-      hexCode: newColor,
-      id: nanoid(),
-    };
-    setColorList([newColorObject, ...colorList]);
-  }
   useEffect(() => {
-    const locallySavedValue = window.localStorage.getItem('colorList');
-    if (locallySavedValue !== null) {
-      console.log('using local storage');
-      setColorList(JSON.parse(locallySavedValue));
+    if (colorList.length >= 0) {
+      window.localStorage.setItem('colorList', JSON.stringify(colorList));
     }
-  }, []);
+  }, [colorList]);
 
   return (
     <CardFlex>
       <ColorForm onSubmit={handleSubmit} />
-      {colorList.map(color => (
-        <ColorBox
-          key={color.id}
-          color={color.hexCode}
-          onDelete={() => handleDelete(color.id)}
-          onChange={newHexCode => handleUpdate(color.id, newHexCode)}
-        />
-      ))}
+      {colorList &&
+        colorList.map(color => (
+          <ColorBox
+            key={color.id}
+            color={color.hexCode}
+            onDelete={() => handleDelete(color.id)}
+            onChange={newHexCode => handleUpdate(color.id, newHexCode)}
+          />
+        ))}
     </CardFlex>
   );
 }
