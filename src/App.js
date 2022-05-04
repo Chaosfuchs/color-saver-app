@@ -26,7 +26,7 @@ export default function App() {
     <CardFlex>
       <ColorForm onSubmit={handleSubmit} />
       {hexColor.map(color => (
-        <ColorBox color={color} />
+        <ColorBox key={color} color={color} />
       ))}
     </CardFlex>
   );
