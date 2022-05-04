@@ -3,7 +3,11 @@ import styled, { css } from 'styled-components';
 export default function ColorBox({ color, onChange, onDelete }) {
   return (
     <StyledBox backgroundColor={color} onClick={handleClick}>
-      <input type="text" value={color} />
+      <input
+        type="text"
+        value={color}
+        onChange={event => onChange(event.target.value)}
+      />
       <button onClick={onDelete}>x</button>
     </StyledBox>
   );
