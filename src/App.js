@@ -18,22 +18,21 @@ const COLORS = [
 ];
 
 export default function App() {
-  const [colorList, setColorList] = useState(COLORS);
+  const [hexColor, setHexColor] = useState(COLORS);
+  function handleSubmit(newColor) {
+    setHexColor([newColor, ...hexColor]);
+  }
   return (
     <>
       <h1>Color Saver App</h1>
-
       <CardGrid>
         <ColorForm onSubmit={handleSubmit} />
-        {colorList.map(color => (
+        {hexColor.map(color => (
           <ColorCard color={color} />
         ))}
       </CardGrid>
     </>
   );
-  function handleSubmit(newColor) {
-    setColorList([newColor, ...colorList]);
-  }
 }
 
 const CardGrid = styled.main`
