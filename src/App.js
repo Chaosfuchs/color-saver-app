@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ColorBox from './components/ColorBox';
 import ColorForm from './components/ColorForm';
 
-const colorList = [
+const COLORLIST = [
   '#F72585',
   '#B5179E',
   '#7209B7',
@@ -17,10 +17,10 @@ const colorList = [
 ];
 
 export default function App() {
-  const [hexColor, setHexColor] = useState(colorList);
+  const [hexColors, setHexColor] = useState(COLORLIST);
 
   function handleSubmit(newColor) {
-    const newColors = [newColor, ...hexColor];
+    const newColors = [newColor, ...hexColors];
     setHexColor(newColors);
     window.localStorage.setItem('colorList', JSON.stringify(newColors));
   }
@@ -35,8 +35,8 @@ export default function App() {
   return (
     <CardFlex>
       <ColorForm onSubmit={handleSubmit} />
-      {hexColor.map(color => (
-        <ColorBox key={colorList.index} color={color} />
+      {hexColors.map((color, index) => (
+        <ColorBox key={index} color={color} />
       ))}
     </CardFlex>
   );
