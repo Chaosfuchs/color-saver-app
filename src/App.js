@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import ColorBox from './components/ColorBox';
 import ColorForm from './components/ColorForm';
 
@@ -20,13 +20,23 @@ export default function App() {
   const [hexColor, setHexColor] = useState(colorList);
 
   function handleSubmit(newColor) {
-    setHexColor([newColor, ...hexColor]);
+    const newColors = [newColor, ...hexColor];
+    setHexColor(newColors);
+    window.localStorage.setItem('colorList', JSON.stringify(newColors));
   }
+  useEffect(() => {
+    const locallySavedValue = window.localStorage.getItem('colorList');
+    if (locallySavedValue !== null) {
+      console.log('using local storage');
+      setHexColor(JSON.parse(locallySavedValue));
+    }
+  }, []);
+
   return (
     <CardFlex>
       <ColorForm onSubmit={handleSubmit} />
       {hexColor.map(color => (
-        <ColorBox key={color} color={color} />
+        <ColorBox key={colorList.index} color={color} />
       ))}
     </CardFlex>
   );
