@@ -28,9 +28,10 @@ const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 10px;
   width: 300px;
-  height: 150px;
+  height: 250px;
   padding: 30px;
   margin: 20px;
   border: 3px solid black;
@@ -38,10 +39,17 @@ const FormContainer = styled.form`
   background-color: beige;
 
   input {
-    width: 100%;
+    width: 70%;
     height: 100%;
     margin: 0;
     padding: 0;
     text-align: center;
+  }
+
+  button {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: lightblue;
   }
 `;
