@@ -13,7 +13,12 @@ export default function ColorForm({ onSubmit }) {
       }}
     >
       <input type="color" value={color} onChange={handleChange} />
-      <input type="text" value={color} onChange={handleChange} />
+      <input
+        className="text"
+        type="text"
+        value={color}
+        onChange={handleChange}
+      />
       <button type="submit">Add Color</button>
     </FormContainer>
   );
@@ -44,6 +49,10 @@ const FormContainer = styled.form`
     margin: 0;
     padding: 0;
     text-align: center;
+  }
+
+  input.text {
+    height: 40%;
   }
 
   button {
